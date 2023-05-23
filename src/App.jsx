@@ -1,5 +1,11 @@
+import Navbar from "./components/Navbar/Navbar";
+
 function App() {
-  return <>HEllo</>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 }
 
 export default App;
