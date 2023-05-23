@@ -2,11 +2,14 @@ import { ShoppingCart, User } from "react-feather";
 
 const Navbar = () => {
   return (
-    <header className="bg-[#1515157f] text-white">
-      <nav className="container mx-auto px-4 py-5  flex items-center justify-between">
+    <header className="bg-[#1515157f] text-white fixed w-full top-0 z-50">
+      <nav className="max-w-7xl mx-auto p-4   flex items-center justify-between">
         <a href="#" className="flex flex-col font2">
-          <span className="text-2xl font-black">BISTRO BOSS</span>
-          <span style={{ letterSpacing: "5px" }} className="text-xl font-bold">
+          <span className="sm:text-2xl text-lg font-black">BISTRO BOSS</span>
+          <span
+            style={{ letterSpacing: "5px" }}
+            className="sm:text-xl text-base font-bold"
+          >
             Restaurant
           </span>
         </a>
@@ -28,16 +31,16 @@ const Navbar = () => {
               <NavItem title={"Our Shop"} />
             </li>
           </ul>
-          <div className="w-12 h-12 bg-[#477430] rounded-full grid place-content-center pr-1 pt-1 relative cursor-pointer">
-            <ShoppingCart />
-            <div className="w-8 h-8 flex justify-center items-center rounded-full bg-[#FF0000] font-semibold absolute top-[-10px] right-[-13px]">
+          <div className="md:w-12 md:h-12 w-8 h-8 bg-[#477430] rounded-full grid place-content-center pr-1 pt-1 relative cursor-pointer">
+            <ShoppingCart size={20} />
+            <div className="md:w-8 md:h-8 w-6 h-6 flex justify-center items-center rounded-full bg-[#FF0000] font-semibold absolute top-[-10px] right-[-13px]">
               12
             </div>
           </div>
 
           <div className="flex items-center gap-2">
             <button className="hidden md:block">SIGN OUT</button>
-            <div className="cursor-pointer w-10 h-10 bg-white rounded-full grid place-content-center">
+            <div className="cursor-pointer md:w-10 md:h-10 w-8 h-8 bg-white rounded-full grid place-content-center">
               <User color="black" />
             </div>
           </div>
