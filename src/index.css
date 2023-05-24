@@ -13,17 +13,9 @@ font-family: 'Inter', sans-serif; */
 
 body {
   font-family: "Inter", sans-serif;
+  color: #151515;
 }
 
 .font2 {
   font-family: "Cinzel", serif;
-}
-
-.carousel {
-  position: relative;
-  width: 100%;
-  margin-inline: auto;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }

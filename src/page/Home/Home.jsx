@@ -1,7 +1,13 @@
 import Hero from "./Hero/Hero";
+import OderOnline from "./Sections/OderOnline";
 
 const Home = () => {
-  return <Hero />;
+  return (
+    <main>
+      <Hero />
+      <OderOnline />
+    </main>
+  );
 };
 
 export default Home;
