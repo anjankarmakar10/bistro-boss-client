@@ -3,6 +3,7 @@ import CallUs from "./Sections/CallUs";
 import ChefService from "./Sections/ChefService";
 import Menus from "./Sections/Menus/Menus";
 import OrderOnline from "./Sections/OrderOnline";
+import Recommends from "./Sections/Recommends/Recommends";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <ChefService />
       <Menus />
       <CallUs />
+      <Recommends />
     </main>
   );
 };

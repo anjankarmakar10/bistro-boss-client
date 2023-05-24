@@ -30,3 +30,9 @@ body {
   min-height: 80vh;
   background: url("./assets/home/chef-service.jpg") no-repeat center / cover;
 }
+
+.recommends {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+}
