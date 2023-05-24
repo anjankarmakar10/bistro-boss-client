@@ -5,6 +5,7 @@ import Menus from "./Sections/Menus/Menus";
 import OrderOnline from "./Sections/OrderOnline";
 import OurMenu from "./Sections/OurMenu";
 import Recommends from "./Sections/Recommends/Recommends";
+import Testimonials from "./Sections/Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <CallUs />
       <Recommends />
       <OurMenu />
+      <Testimonials />
     </main>
   );
 };
