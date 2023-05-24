@@ -25,3 +25,8 @@ body {
   height: 480px;
   object-fit: cover;
 }
+
+.bg-service {
+  min-height: 80vh;
+  background: url("./assets/home/chef-service.jpg") no-repeat center / cover;
+}

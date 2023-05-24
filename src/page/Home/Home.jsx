@@ -1,4 +1,5 @@
 import Hero from "./Hero/Hero";
+import ChefService from "./Sections/ChefService";
 import OrderOnline from "./Sections/OrderOnline";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <main>
       <Hero />
       <OrderOnline />
+      <ChefService />
     </main>
   );
 };

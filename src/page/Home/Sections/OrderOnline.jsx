@@ -51,9 +51,6 @@ const OrderOnline = () => {
           <SwiperSlide>
             <Slide img={slide4} tag={"desserts"} />
           </SwiperSlide>
-          <SwiperSlide>
-            <Slide img={slide5} />
-          </SwiperSlide>
         </Swiper>
       </div>
     </section>
