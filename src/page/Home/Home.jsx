@@ -3,6 +3,7 @@ import CallUs from "./Sections/CallUs";
 import ChefService from "./Sections/ChefService";
 import Menus from "./Sections/Menus/Menus";
 import OrderOnline from "./Sections/OrderOnline";
+import OurMenu from "./Sections/OurMenu";
 import Recommends from "./Sections/Recommends/Recommends";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <Menus />
       <CallUs />
       <Recommends />
+      <OurMenu />
     </main>
   );
 };

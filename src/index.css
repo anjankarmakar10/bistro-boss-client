@@ -36,3 +36,7 @@ body {
   gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
 }
+
+.ourmenu {
+  background: url("./assets/home/featured.jpg") fixed center / cover;
+}
