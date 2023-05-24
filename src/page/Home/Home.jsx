@@ -1,3 +1,4 @@
+import useTitle from "../../hooks/useTitle";
 import Hero from "./Hero/Hero";
 import CallUs from "./Sections/CallUs";
 import ChefService from "./Sections/ChefService";
@@ -8,6 +9,8 @@ import Recommends from "./Sections/Recommends/Recommends";
 import Testimonials from "./Sections/Testimonials/Testimonials";
 
 const Home = () => {
+  useTitle("Home");
+
   return (
     <main>
       <Hero />

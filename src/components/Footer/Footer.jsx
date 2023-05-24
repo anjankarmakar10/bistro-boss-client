@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-xl font-medium p-4 bg-[#151515]">
-        Copyright © CulinaryCloud. All rights reserved.
+        Copyright © BISTRO BOSS Restaurant. All rights reserved.
       </div>
     </footer>
   );

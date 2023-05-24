@@ -44,3 +44,7 @@ body {
 .slider-wrapper img {
   min-height: 85vh;
 }
+
+nav .active {
+  color: #eeff25;
+}
