@@ -10,7 +10,7 @@ import image6 from "../../../assets/home/06.png";
 
 const Hero = () => {
   return (
-    <section className="text-center">
+    <section className="text-center ">
       <Carousel
         thumbWidth={100}
         infiniteLoop={true}

@@ -40,3 +40,7 @@ body {
 .ourmenu {
   background: url("./assets/home/featured.jpg") fixed center / cover;
 }
+
+.slider-wrapper img {
+  min-height: 85vh;
+}
