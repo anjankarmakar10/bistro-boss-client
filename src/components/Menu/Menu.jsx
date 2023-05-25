@@ -1,9 +1,9 @@
-import img from "../../assets/home/01.jpg";
+import img from "../../assets/home/slide1.jpg";
 
 const Menu = () => {
   return (
-    <article>
-      <img className="max-h-80 w-full" src={img} alt="" />
+    <article className="relative">
+      <img className="max-h-80 w-full object-cover" src={img} alt="" />
       <div className="text-center flex flex-col justify-center items-center py-8 px-4 bg-[#F3F3F3]">
         <h4 className="font-semibold text-2xl">Caeser Salad</h4>
         <p className="max-w-[260px] mx-auto text-base mt-2 mb-6">
@@ -15,6 +15,9 @@ const Menu = () => {
             add to cart
           </button>
         </div>
+      </div>
+      <div className="py-2 px-5 bg-[#111827] rounded-md text-white font-semibold absolute top-4 right-4">
+        $14.5
       </div>
     </article>
   );
