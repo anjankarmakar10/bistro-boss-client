@@ -16,7 +16,7 @@ const SectionContainer = ({ title, children, onClick }) => {
         }
         coverImage={image}
       />
-      <div className="mt-20">
+      <div className="mt-20 mb-12">
         <MenuContainer>{children}</MenuContainer>
         <Button onClick={onClick}>ORDER YOUR FAVOURITE FOOD</Button>
       </div>
