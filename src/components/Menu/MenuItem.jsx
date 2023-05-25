@@ -1,4 +1,4 @@
-const Menu = ({ menu }) => {
+const MenuItem = ({ menu }) => {
   return (
     <article className="flex gap-8">
       <img
@@ -20,4 +20,4 @@ const Menu = ({ menu }) => {
   );
 };
 
-export default Menu;
+export default MenuItem;
