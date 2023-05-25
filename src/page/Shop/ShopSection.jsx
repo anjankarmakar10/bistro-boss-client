@@ -1,11 +1,19 @@
 import React, { useState } from "react";
+import useMenus from "../../hooks/useMenus";
+import Menu from "../../components/Menu/Menu";
+import { useParams } from "react-router-dom";
 
 const ShopSection = () => {
-  const cetagories = ["salad", "pizza", "soups", "desserts", "drinks"];
-  const [cetagory, setCetagory] = useState("salad");
+  const cetagories = ["salad", "pizza", "soup", "dessert", "drinks"];
+
+  const { category } = useParams();
+
+  const [cetagory, setCetagory] = useState(category || "salad");
+  const menus = useMenus();
+  const data = menus?.filter((item) => item.category === cetagory);
 
   return (
-    <div className="container mx-auto px-4 pt-32">
+    <div className="container mx-auto px-4 pt-32 pb-10">
       <section className="mb-10 flex max-w-[680px] mx-auto flex-wrap justify-between">
         {cetagories?.map((item) => (
           <article
@@ -22,7 +30,11 @@ const ShopSection = () => {
         ))}
       </section>
 
-      <section></section>
+      <section className="recommends">
+        {data?.map((menu) => (
+          <Menu key={menu?._id} menu={menu} />
+        ))}
+      </section>
     </div>
   );
 };

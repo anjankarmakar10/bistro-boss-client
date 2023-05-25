@@ -3,8 +3,9 @@ import SectionCover from "../../../components/Cover/SectionCover";
 import image from "../../../assets/home/chef-service.jpg";
 import MenuContainer from "../../../components/Menu/MenuContainer";
 import Button from "../../../components/Buttons/Button";
+import { Link } from "react-router-dom";
 
-const SectionContainer = ({ title, children, onClick }) => {
+const SectionContainer = ({ title, children }) => {
   return (
     <div>
       <SectionCover
@@ -16,7 +17,9 @@ const SectionContainer = ({ title, children, onClick }) => {
       />
       <div className="mt-20 mb-12">
         <MenuContainer>{children}</MenuContainer>
-        <Button onClick={onClick}>ORDER YOUR FAVOURITE FOOD</Button>
+        <Link to={`/shop/${title}`}>
+          <Button>ORDER YOUR FAVOURITE FOOD</Button>
+        </Link>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const Desserts = ({ menus }) => {
 
   return (
     <>
-      <SectionContainer title={"Desserts"}>
+      <SectionContainer title={"dessert"}>
         {data?.map((menu) => (
           <MenuItem key={menu?._id} menu={menu} />
         ))}

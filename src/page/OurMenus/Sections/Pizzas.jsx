@@ -6,7 +6,7 @@ const Pizzas = ({ menus }) => {
   const data = getCetagory(menus, "pizza");
   return (
     <>
-      <SectionContainer title={"Pizza"}>
+      <SectionContainer title={"pizza"}>
         {data?.map((menu) => (
           <MenuItem key={menu?._id} menu={menu} />
         ))}
