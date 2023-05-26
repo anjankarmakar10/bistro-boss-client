@@ -1,6 +1,8 @@
 import img from "../../assets/others/authentication2.png";
 import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
 import { useForm } from "react-hook-form";
+import SigninContainer from "../../components/auth/SigninContainer";
+import { Link } from "react-router-dom";
 const SignUp = () => {
   const {
     register,
@@ -105,6 +107,13 @@ const SignUp = () => {
 
             <ButtonSubmit>Sign Up</ButtonSubmit>
           </form>
+          <div className="mt-8 text-xl text-[#D1A054] text-center">
+            Already registered? {""}
+            <Link to="/signin" className="font-bold">
+              Go to log in
+            </Link>
+          </div>
+          <SigninContainer />
         </div>
       </section>
     </div>

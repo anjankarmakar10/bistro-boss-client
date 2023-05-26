@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import img from "../../assets/others/authentication2.png";
 import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
+import { Link } from "react-router-dom";
+import SigninContainer from "../../components/auth/SigninContainer";
 
 const SignIn = () => {
   const {
@@ -91,6 +93,14 @@ const SignIn = () => {
 
             <ButtonSubmit>Sign In</ButtonSubmit>
           </form>
+
+          <div className="mt-8 text-xl text-[#D1A054] text-center">
+            New here?{" "}
+            <Link to="/signup" className="font-bold">
+              Create a New Account
+            </Link>
+          </div>
+          <SigninContainer />
         </div>
       </section>
     </div>
