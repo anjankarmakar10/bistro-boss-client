@@ -108,7 +108,7 @@ const SignUp = () => {
             <ButtonSubmit>Sign Up</ButtonSubmit>
           </form>
           <div className="mt-8 text-xl text-[#D1A054] text-center">
-            Already registered? {""}
+            Already registered?{" "}
             <Link to="/signin" className="font-bold">
               Go to log in
             </Link>
