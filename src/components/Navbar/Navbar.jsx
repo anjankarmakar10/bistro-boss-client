@@ -1,6 +1,6 @@
-import { ShoppingCart, User } from "react-feather";
+import { ShoppingCart } from "react-feather";
 import { NavLink, Link } from "react-router-dom";
-
+import profile from "../../assets/others/profile.png";
 const Navbar = () => {
   return (
     <header className="bg-[#1515157f] text-white fixed w-full top-0 z-50">
@@ -28,7 +28,7 @@ const Navbar = () => {
             <NavItem to={"/menus"} title={"Our Menu"} />
           </li>
           <li>
-            <NavItem to={"/shop"} title={"Our Shop"} />
+            <NavItem to={`/shop/foods`} title={"Our Shop"} />
           </li>
         </ul>
         <div className="flex font-bold items-center gap-4">
@@ -43,8 +43,12 @@ const Navbar = () => {
             <Link to="/signin">SIGN IN</Link>
             {/* <div className="flex items-center gap-2">
               <button>SIGN OUT</button>
-              <div className="hidden md:grid cursor-pointer md:w-10 md:h-10 w-8 h-8 bg-white rounded-full  place-content-center">
-                <User color="black" />
+              <div className="cursor-pointer ml-2">
+                <img
+                  className="w-10 h-10 rounded-full object-cover"
+                  src={profile}
+                  alt=""
+                />
               </div>
             </div> */}
           </>

@@ -48,3 +48,7 @@ body {
 nav .active {
   color: #eeff25;
 }
+
+.bg-auth {
+  background: url("./assets/others/authentication.png") no-repeat center / cover;
+}
