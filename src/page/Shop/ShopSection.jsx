@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useMenus from "../../hooks/useMenus";
 import Menu from "../../components/Menu/Menu";
 import { useParams } from "react-router-dom";

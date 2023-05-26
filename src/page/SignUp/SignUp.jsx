@@ -5,11 +5,12 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    reset();
   };
 
   return (
@@ -49,14 +50,23 @@ const SignUp = () => {
                 Email
               </label>
               <input
-                {...register("email", { required: true })}
+                {...register("email", {
+                  required: true,
+                  pattern:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                })}
                 className="py-2 md:py-4 outline-none outline-blue-500 focus-within:outline-4 drop-shadow-sm px-4 md:px-6 rounded-lg text-[#151515] placeholder:text-[#a1a1a1]"
                 type="email"
                 placeholder="Enter your email"
               />
-              {errors.email && (
+              {errors.email?.type === "required" && (
                 <span className="mt-1 font-medium  text-red-800">
                   Email is required
+                </span>
+              )}
+              {errors.email?.type === "pattern" && (
+                <span className="mt-1 font-medium  text-red-800">
+                  Please enter a valid email
                 </span>
               )}
             </div>
