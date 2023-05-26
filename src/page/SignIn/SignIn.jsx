@@ -4,15 +4,15 @@ import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
 const SignIn = () => {
   return (
     <div className={`py-10 px-2 bg-auth`}>
-      <section className="container mx-auto px-4 bg-auth min-h-[90vh] drop-shadow-2xl flex items-center">
-        <div className="flex-1">
+      <section className="container mx-auto px-6 bg-auth min-h-[90vh] drop-shadow-2xl flex flex-col md:flex-row items-center py-8">
+        <div className="flex-1 w-full hidden md:flex">
           <img className="w-full max-w-[648px]" src={img} alt="" />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <h3 className="text-center text-3xl md:text-4xl font-bold mb-2">
             Login
           </h3>
-          <form className="w-full max-w-[536px]" action="">
+          <form className="w-full max-w-[536px] mx-auto" action="">
             <div className="flex flex-col gap-4 mb-6">
               <label className="font-semibold text-xl" htmlFor="email">
                 Email
