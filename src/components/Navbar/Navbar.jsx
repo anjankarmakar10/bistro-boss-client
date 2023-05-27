@@ -2,9 +2,35 @@ import { ShoppingCart } from "react-feather";
 import { NavLink, Link } from "react-router-dom";
 import profile from "../../assets/others/profile.png";
 import { useAuh } from "../../contexts/AuthProvider";
+import Swal from "sweetalert2";
+
 const Navbar = () => {
-  const { user } = useAuh();
-  console.log(user);
+  const { user, logOut } = useAuh();
+
+  const handleLogOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Sign Out",
+    }).then((result) => {
+      const signOut = async () => {
+        try {
+          await logOut();
+        } catch (error) {
+          console.log(error.message);
+          return;
+        }
+      };
+
+      if (result.isConfirmed) {
+        signOut();
+        Swal.fire("Successfully Sign Out!", "", "success");
+      }
+    });
+  };
 
   return (
     <header className="bg-[#1515157f] text-white fixed w-full top-0 z-50">
@@ -46,7 +72,7 @@ const Navbar = () => {
           <>
             {user ? (
               <div className="flex items-center gap-2">
-                <button>SIGN OUT</button>
+                <button onClick={handleLogOut}>SIGN OUT</button>
                 <div title={user?.displayName} className="cursor-pointer ml-2">
                   {user?.photoURL ? (
                     <img
