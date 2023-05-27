@@ -1,7 +1,11 @@
 import { ShoppingCart } from "react-feather";
 import { NavLink, Link } from "react-router-dom";
 import profile from "../../assets/others/profile.png";
+import { useAuh } from "../../contexts/AuthProvider";
 const Navbar = () => {
+  const { user } = useAuh();
+  console.log(user);
+
   return (
     <header className="bg-[#1515157f] text-white fixed w-full top-0 z-50">
       <nav className="max-w-7xl mx-auto p-4  flex items-center justify-between">
@@ -40,17 +44,28 @@ const Navbar = () => {
           </div>
 
           <>
-            <Link to="/signin">SIGN IN</Link>
-            {/* <div className="flex items-center gap-2">
-              <button>SIGN OUT</button>
-              <div className="cursor-pointer ml-2">
-                <img
-                  className="w-10 h-10 rounded-full object-cover"
-                  src={profile}
-                  alt=""
-                />
+            {user ? (
+              <div className="flex items-center gap-2">
+                <button>SIGN OUT</button>
+                <div title={user?.displayName} className="cursor-pointer ml-2">
+                  {user?.photoURL ? (
+                    <img
+                      className="w-10 h-10 rounded-full object-cover"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  ) : (
+                    <img
+                      className="w-10 h-10 rounded-full object-cover"
+                      src={profile}
+                      alt=""
+                    />
+                  )}
+                </div>
               </div>
-            </div> */}
+            ) : (
+              <Link to="/signin">SIGN IN</Link>
+            )}
           </>
         </div>
       </nav>
