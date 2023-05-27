@@ -6,6 +6,7 @@ import {
   sendPasswordResetEmail,
   sendEmailVerification,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { useContext } from "react";
@@ -40,6 +41,11 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const signInWithEmail = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   const updateUserProfile = (user, name, image) => {
     return updateProfile(user, { displayName: name, photoURL: image });
   };
@@ -59,6 +65,7 @@ const AuthProvider = ({ children }) => {
     loading,
     signUpWithEmail,
     logOut,
+    signInWithEmail,
     updateUserProfile,
     forgotPassword,
     verifyEmail,

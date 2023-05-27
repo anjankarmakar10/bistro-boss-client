@@ -2,7 +2,11 @@ import img from "../../assets/others/authentication2.png";
 import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
 import { useForm } from "react-hook-form";
 import SigninContainer from "../../components/auth/SigninContainer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useAuh } from "../../contexts/AuthProvider";
+import Swal from "sweetalert2";
+
 const SignUp = () => {
   const {
     register,
@@ -10,8 +14,33 @@ const SignUp = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+
+  const navigate = useNavigate();
+
+  const { signUpWithEmail, updateUserProfile, verifyEmail } = useAuh();
+
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      const { user } = await signUpWithEmail(data?.email, data?.password);
+      await updateUserProfile(user, data?.name, "");
+      await verifyEmail(user);
+      reset();
+      Swal.fire(
+        "Successfully Account Created!",
+        "Please check your email to verify your account",
+        "success"
+      );
+      navigate("/", { replace: true });
+    } catch (error) {
+      setLoading(false);
+
+      setMessage(error.message);
+    }
+
     reset();
   };
 
@@ -25,6 +54,12 @@ const SignUp = () => {
           <h3 className="text-center text-3xl md:text-4xl font-bold mb-2">
             Sign Up
           </h3>
+
+          {message && (
+            <div className="w-full text-white font-medium max-w-[536px] mx-auto  p-2 bg-slate-400 rounded-lg mb-2">
+              {message}
+            </div>
+          )}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-full max-w-[536px] mx-auto"
@@ -105,7 +140,7 @@ const SignUp = () => {
               )}
             </div>
 
-            <ButtonSubmit>Sign Up</ButtonSubmit>
+            <ButtonSubmit disabled={loading}>Sign Up</ButtonSubmit>
           </form>
           <div className="mt-8 text-xl text-[#D1A054] text-center">
             Already registered?{" "}

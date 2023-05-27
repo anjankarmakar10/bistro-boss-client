@@ -1,9 +1,16 @@
 import { useForm } from "react-hook-form";
 import img from "../../assets/others/authentication2.png";
 import ButtonSubmit from "../../components/Buttons/ButtonSubmit";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SigninContainer from "../../components/auth/SigninContainer";
-
+import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
+import { useAuh } from "../../contexts/AuthProvider";
 const SignIn = () => {
   const {
     register,
@@ -11,11 +18,37 @@ const SignIn = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const [message, setMessage] = useState("");
+  const [captchaMsg, setCaptchaMsg] = useState("");
+  const navigate = useNavigate();
+
+  const { signInWithEmail } = useAuh();
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
+  const onSubmit = async (data) => {
+    if (!validateCaptcha(data?.capcha)) {
+      setCaptchaMsg("Captcha didn't Matched");
+      return;
+    }
+
+    try {
+      const { user } = await signInWithEmail(data?.email, data?.password);
+      reset();
+      Swal.fire(
+        "Successfully Sign In!",
+        `Welcome back ${user?.displayName}`,
+        "success"
+      );
+      navigate("/", { replace: true });
+    } catch (error) {
+      setMessage(error.message);
+    }
+
     reset();
   };
-
   return (
     <div className={`py-10 px-2 bg-auth`}>
       <section className="container mx-auto px-6 bg-auth min-h-[90vh] drop-shadow-2xl flex flex-col md:flex-row items-center py-8">
@@ -26,6 +59,11 @@ const SignIn = () => {
           <h3 className="text-center text-3xl md:text-4xl font-bold mb-2">
             Login
           </h3>
+          {message && (
+            <div className="w-full text-white font-medium max-w-[536px] mx-auto  p-2 bg-slate-400 rounded-lg mb-2">
+              {message}
+            </div>
+          )}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-full max-w-[536px] mx-auto"
@@ -75,20 +113,28 @@ const SignIn = () => {
             </div>
 
             <div className="flex flex-col gap-4 mb-6">
-              <input
-                className="py-2 md:py-4 outline-none drop-shadow-sm px-4 md:px-6 rounded-lg text-[#151515] bg-white"
-                type="text"
-                value={"U A g l u o "}
-                disabled
-              />
+              <div className="pb-1 pt-2  outline-none drop-shadow-sm px-4 rounded-lg text-[#151515] bg-white">
+                <LoadCanvasTemplate />
+              </div>
+              {captchaMsg && (
+                <div className="w-full text-white font-medium max-w-[536px] mx-auto  p-2 bg-slate-400 rounded-lg mb-2">
+                  {captchaMsg}
+                </div>
+              )}
             </div>
 
             <div className="flex flex-col gap-4 mb-6">
               <input
+                {...register("capcha", { required: true })}
                 className="py-2 md:py-4 outline-none outline-blue-500 focus-within:outline-4 drop-shadow-sm px-4 md:px-6 rounded-lg text-[#151515] placeholder:text-[#a1a1a1]"
                 type="text"
                 placeholder="Enter the text below"
               />
+              {errors.capcha && (
+                <span className="mt-1 font-medium  text-red-800">
+                  Please fill this field
+                </span>
+              )}
             </div>
 
             <ButtonSubmit>Sign In</ButtonSubmit>
