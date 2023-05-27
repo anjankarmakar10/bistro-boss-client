@@ -10,7 +10,7 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { useAuh } from "../../contexts/AuthProvider";
+import { useAuth } from "../../contexts/AuthProvider";
 const SignIn = () => {
   const {
     register,
@@ -22,7 +22,7 @@ const SignIn = () => {
   const [captchaMsg, setCaptchaMsg] = useState("");
   const navigate = useNavigate();
 
-  const { signInWithEmail } = useAuh();
+  const { signInWithEmail, forgotPassword } = useAuth();
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -46,9 +46,37 @@ const SignIn = () => {
     } catch (error) {
       setMessage(error.message);
     }
-
-    reset();
   };
+
+  const handleForgot = async () => {
+    Swal.fire({
+      title: "Submit your email address",
+      input: "email",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: true,
+      confirmButtonText: "Send",
+      showLoaderOnConfirm: true,
+      preConfirm: async (email) => {
+        try {
+          await forgotPassword(email);
+        } catch (error) {
+          Swal.showValidationMessage(`Request failed: ${error.message}`);
+          return;
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: "success",
+          title: `Check your email for forther informations`,
+        });
+      }
+    });
+  };
+
   return (
     <div className={`py-10 px-2 bg-auth`}>
       <section className="container mx-auto px-6 bg-auth min-h-[90vh] drop-shadow-2xl flex flex-col md:flex-row items-center py-8">
@@ -105,6 +133,12 @@ const SignIn = () => {
                 type="password"
                 placeholder="Enter your email"
               />
+              <span
+                onClick={handleForgot}
+                className="cursor-pointer text-blue-500 underline font-semibold"
+              >
+                Forgot Password?
+              </span>
               {errors.email && (
                 <span className="mt-1 font-medium  text-red-800">
                   Password is required

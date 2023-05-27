@@ -17,7 +17,7 @@ import {
 } from "../config/firebase";
 
 const AuthContext = createContext();
-export const useAuh = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -67,8 +67,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     signInWithEmail,
     updateUserProfile,
-    forgotPassword,
     verifyEmail,
+    forgotPassword,
   };
 
   useEffect(() => {

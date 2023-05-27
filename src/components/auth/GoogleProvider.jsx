@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/icon/google.svg";
-import { useAuh } from "../../contexts/AuthProvider";
+import { useAuth } from "../../contexts/AuthProvider";
 
 const GoogleProvider = () => {
-  const { signInWithGoogle } = useAuh();
+  const { signInWithGoogle } = useAuth();
   const { state } = useLocation();
   const navigation = useNavigate();
   const from = state?.path || "/";

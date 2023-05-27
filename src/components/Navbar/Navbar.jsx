@@ -1,11 +1,11 @@
 import { ShoppingCart } from "react-feather";
 import { NavLink, Link } from "react-router-dom";
 import profile from "../../assets/others/profile.png";
-import { useAuh } from "../../contexts/AuthProvider";
+import { useAuth } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user, logOut } = useAuh();
+  const { user, logOut } = useAuth();
 
   const handleLogOut = () => {
     Swal.fire({

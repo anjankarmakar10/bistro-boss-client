@@ -1,9 +1,9 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import img from "../../assets/icon/github.svg";
-import { useAuh } from "../../contexts/AuthProvider";
+import { useAuth } from "../../contexts/AuthProvider";
 
 const GitHubProvider = () => {
-  const { signInWithGithub } = useAuh();
+  const { signInWithGithub } = useAuth();
   const { state } = useLocation();
   const navigation = useNavigate();
   const from = state?.path || "/";

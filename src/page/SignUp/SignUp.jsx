@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import SigninContainer from "../../components/auth/SigninContainer";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuh } from "../../contexts/AuthProvider";
+import { useAuth } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
@@ -17,7 +17,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  const { signUpWithEmail, updateUserProfile, verifyEmail } = useAuh();
+  const { signUpWithEmail, updateUserProfile, verifyEmail } = useAuth();
 
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
