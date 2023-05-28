@@ -10,7 +10,11 @@ const Navbar = () => {
 
   const carts = useCarts();
 
-  const cartCount = carts?.length;
+  let cartCount = 0;
+
+  if (user) {
+    cartCount = carts?.length;
+  }
 
   const handleLogOut = () => {
     Swal.fire({

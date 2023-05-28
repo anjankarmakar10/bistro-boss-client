@@ -1,13 +1,55 @@
+import Swal from "sweetalert2";
+import { useAuth } from "../../contexts/AuthProvider";
 import addToCart from "../../utils/addToCart";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Menu = ({ menu }) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const { pathname } = useLocation();
+
+  const { category, image, name, recipe, price, _id } = menu;
+
   const handleAddToCart = async () => {
-    try {
-      const response = await addToCart(menu);
-      const result = await response.json();
-      console.log(result);
-    } catch (error) {
-      console.log(error.message);
+    if (user) {
+      try {
+        const response = await addToCart({
+          name,
+          image,
+          category,
+          recipe,
+          price,
+          itemId: _id,
+          userId: user.uid,
+        });
+        const result = await response.json();
+
+        if (result.acknowledged) {
+          Swal.fire({
+            icon: "success",
+            title: "Successfully add in cart",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      Swal.fire({
+        title: "Please sign in first",
+        text: "You can't add item in cart",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Want to sign in?",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/signin", { state: { path: pathname } });
+        }
+      });
     }
   };
 
