@@ -3,11 +3,14 @@ import { NavLink, Link } from "react-router-dom";
 import profile from "../../assets/others/profile.png";
 import { useAuth } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
+import useCarts from "../../hooks/useCarts";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
 
-  const count = 0;
+  const carts = useCarts();
+
+  const cartCount = carts?.length;
 
   const handleLogOut = () => {
     Swal.fire({
@@ -66,9 +69,9 @@ const Navbar = () => {
         <div className="flex font-bold items-center gap-4">
           <div className="md:w-12 md:h-12 w-8 h-8 bg-[#477430] rounded-full grid place-content-center pr-1 pt-1 relative cursor-pointer mr-2">
             <ShoppingCart size={20} />
-            {count !== 0 && (
+            {cartCount !== 0 && (
               <div className="md:w-8 md:h-8 w-6 h-6 flex justify-center items-center rounded-full bg-[#FF0000] font-semibold absolute top-[-10px] right-[-13px]">
-                {count}
+                {cartCount}
               </div>
             )}
           </div>
