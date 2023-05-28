@@ -8,13 +8,7 @@ import useCarts from "../../hooks/useCarts";
 const Navbar = () => {
   const { user, logOut } = useAuth();
 
-  const carts = useCarts();
-
-  let cartCount = 0;
-
-  if (user) {
-    cartCount = carts?.length;
-  }
+  const [carts] = useCarts();
 
   const handleLogOut = () => {
     Swal.fire({
@@ -73,9 +67,9 @@ const Navbar = () => {
         <div className="flex font-bold items-center gap-4">
           <div className="md:w-12 md:h-12 w-8 h-8 bg-[#477430] rounded-full grid place-content-center pr-1 pt-1 relative cursor-pointer mr-2">
             <ShoppingCart size={20} />
-            {cartCount !== 0 && (
+            {carts?.length !== 0 && (
               <div className="md:w-8 md:h-8 w-6 h-6 flex justify-center items-center rounded-full bg-[#FF0000] font-semibold absolute top-[-10px] right-[-13px]">
-                {cartCount}
+                {carts?.length}
               </div>
             )}
           </div>

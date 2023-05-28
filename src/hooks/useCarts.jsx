@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
-
+import { useAuth } from "../contexts/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 const useCarts = () => {
-  const [carts, setCarts] = useState(null);
+  const { user } = useAuth();
 
   const getData = async () => {
-    const response = await fetch("http://localhost:4000/carts");
-    const result = await response.json();
-    setCarts(result);
+    try {
+      const response = await fetch(
+        `http://localhost:4000/carts?userId=${user?.uid}`
+      );
+      return await response.json();
+    } catch (error) {
+      return error.message;
+    }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const { data: carts, refetch } = useQuery({
+    queryKey: ["carts", user?.uid],
+    queryFn: getData,
+  });
 
-  return carts;
+  return [carts, refetch];
 };
 
 export default useCarts;

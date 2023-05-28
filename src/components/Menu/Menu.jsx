@@ -2,33 +2,33 @@ import Swal from "sweetalert2";
 import { useAuth } from "../../contexts/AuthProvider";
 import addToCart from "../../utils/addToCart";
 import { useLocation, useNavigate } from "react-router-dom";
+import useCarts from "../../hooks/useCarts";
 
 const Menu = ({ menu }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [, refetch] = useCarts();
 
   const { pathname } = useLocation();
-
-  const { category, image, name, recipe, price, _id } = menu;
 
   const handleAddToCart = async () => {
     if (user) {
       try {
         const response = await addToCart({
-          name,
-          image,
-          category,
-          recipe,
-          price,
-          itemId: _id,
+          name: menu?.name,
+          image: menu?.image,
+          category: menu?.category,
+          price: menu?.price,
+          menuId: menu?._id,
           userId: user.uid,
         });
         const result = await response.json();
 
         if (result.acknowledged) {
+          refetch();
           Swal.fire({
             icon: "success",
-            title: "Successfully add in cart",
+            title: "Successfully add on cart",
             showConfirmButton: false,
             timer: 1500,
           });
