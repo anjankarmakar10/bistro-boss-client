@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-const useTestimonials = () => {
+const useReviews = () => {
   const [reviews, setReviews] = useState(null);
 
   const getData = async () => {
-    const response = await fetch("reviews.json");
+    const response = await fetch("http://localhost:4000/reviews");
     const result = await response.json();
     setReviews(result);
   };
@@ -16,4 +16,4 @@ const useTestimonials = () => {
   return reviews;
 };
 
-export default useTestimonials;
+export default useReviews;

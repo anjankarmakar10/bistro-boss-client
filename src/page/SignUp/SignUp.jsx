@@ -115,8 +115,8 @@ const SignUp = () => {
               <input
                 {...register("password", {
                   required: true,
-                  pattern: /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{8,}$/,
-                  minLength: 8,
+                  pattern: /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/,
+                  minLength: 6,
                 })}
                 className="py-2 md:py-4 outline-none outline-blue-500 focus-within:outline-4 drop-shadow-sm px-4 md:px-6 rounded-lg text-[#151515] placeholder:text-[#a1a1a1]"
                 type="password"

@@ -1,11 +1,11 @@
 import SectionHeader from "../../../../components/SectionHeader/SectionHeader";
-import useMenus from "../../../../hooks/useMenus";
+import useMenu from "../../../../hooks/useMenu";
 import MenuItem from "../../../../components/Menu/MenuItem";
 import Button from "../../../../components/Buttons/Button";
 import MenuContainer from "../../../../components/Menu/MenuContainer";
 
 const Menus = () => {
-  const menus = useMenus();
+  const menus = useMenu();
 
   return (
     <section className="mb-32">

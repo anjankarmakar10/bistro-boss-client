@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const { user, logOut } = useAuth();
 
+  const count = 0;
+
   const handleLogOut = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -64,9 +66,11 @@ const Navbar = () => {
         <div className="flex font-bold items-center gap-4">
           <div className="md:w-12 md:h-12 w-8 h-8 bg-[#477430] rounded-full grid place-content-center pr-1 pt-1 relative cursor-pointer mr-2">
             <ShoppingCart size={20} />
-            <div className="md:w-8 md:h-8 w-6 h-6 flex justify-center items-center rounded-full bg-[#FF0000] font-semibold absolute top-[-10px] right-[-13px]">
-              12
-            </div>
+            {count !== 0 && (
+              <div className="md:w-8 md:h-8 w-6 h-6 flex justify-center items-center rounded-full bg-[#FF0000] font-semibold absolute top-[-10px] right-[-13px]">
+                {count}
+              </div>
+            )}
           </div>
 
           <>

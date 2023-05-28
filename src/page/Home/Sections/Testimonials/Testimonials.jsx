@@ -1,18 +1,16 @@
 import React from "react";
 import SectionHeader from "../../../../components/SectionHeader/SectionHeader";
-import useTestimonials from "../../../../hooks/useTestimonials";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Navigation } from "swiper";
 import Testimonial from "./Testimonial";
+import useReviews from "../../../../hooks/useReviews";
 
 const Testimonials = () => {
-  const reviews = useTestimonials();
+  const reviews = useReviews();
 
   return (
     <section className="mb-32">

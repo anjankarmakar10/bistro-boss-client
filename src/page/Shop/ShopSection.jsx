@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useMenus from "../../hooks/useMenus";
+import useMenu from "../../hooks/useMenu";
 import Menu from "../../components/Menu/Menu";
 import { useParams } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const ShopSection = () => {
   const [cetagory, setCetagory] = useState(
     `${category === "foods" ? "salad" : category}`
   );
-  const menus = useMenus();
+  const menus = useMenu();
   const data = menus?.filter((item) => item.category === cetagory);
 
   return (
