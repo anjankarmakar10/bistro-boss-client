@@ -1,4 +1,16 @@
+import addToCart from "../../utils/addToCart";
+
 const Menu = ({ menu }) => {
+  const handleAddToCart = async () => {
+    try {
+      const response = await addToCart(menu);
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <article className="relative rounded overflow-hidden">
       <img className="max-h-80 w-full object-cover" src={menu?.image} alt="" />
@@ -8,7 +20,10 @@ const Menu = ({ menu }) => {
           {menu?.recipe}
         </p>
 
-        <div className="w-fit mx-auto  bg-[#BB8506] relative rounded-lg pb-1 min-w-[200px] focus:pb-0 transition-all">
+        <div
+          onClick={handleAddToCart}
+          className="w-fit mx-auto  bg-[#BB8506] relative rounded-lg pb-1 min-w-[200px] focus:pb-0 transition-all"
+        >
           <button className="uppercase rounded-lg text-xl font-medium h-16 w-full text-[#BB8506] bg-[#e8e8e8] hover:bg-[#1F2937] transition-all">
             add to cart
           </button>

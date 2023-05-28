@@ -7,7 +7,6 @@ const ShopSection = () => {
   const cetagories = ["salad", "pizza", "soup", "dessert", "drinks"];
 
   const { category } = useParams();
-  console.log(category);
 
   const [cetagory, setCetagory] = useState(
     `${category === "foods" ? "salad" : category}`
