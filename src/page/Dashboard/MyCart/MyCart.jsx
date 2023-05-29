@@ -1,4 +1,3 @@
-import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 import useCarts from "../../../hooks/useCarts";
 import useTitle from "../../../hooks/useTitle";
 import totalPrice from "../../../utils/totalPrice";

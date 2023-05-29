@@ -1,4 +1,37 @@
+import Swal from "sweetalert2";
+import useCarts from "../../../hooks/useCarts";
+
 const CartItem = ({ cart }) => {
+  const [, refetch] = useCarts();
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      const deleteItem = async () => {
+        const response = await fetch(
+          `http://localhost:4000/carts?id=${cart?._id}`,
+          { method: "DELETE" }
+        );
+        const result = await response.json();
+        if (result.deletedCount > 0) {
+          refetch();
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        }
+      };
+
+      if (result.isConfirmed) {
+        deleteItem();
+      }
+    });
+  };
+
   return (
     <tr>
       <th></th>
@@ -16,9 +49,14 @@ const CartItem = ({ cart }) => {
           <div className="font-bold">{cart?.name}</div>
         </div>
       </td>
-      <td>{cart?.price}</td>
+      <td className="">{cart?.price}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">Delete</button>
+        <button
+          onClick={handleDelete}
+          className="btn text-white bg-red-500  btn-xs p-3 pt-[14px]  grid place-content-center"
+        >
+          Delete
+        </button>
       </th>
     </tr>
   );
