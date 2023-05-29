@@ -12,6 +12,7 @@ import DashboardHome from "../page/Dashboard/Home/DashboardHome";
 import AddItems from "../page/Dashboard/AddItems/AddItems";
 import ManageItems from "../page/Dashboard/ManageItems/ManageItems";
 import AllUsers from "../page/Dashboard/AllUsers/AllUsers";
+import MyCart from "../page/Dashboard/MyCart/MyCart";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manageusers",
         element: <AllUsers />,
+      },
+      {
+        path: "/dashboard/mycart",
+        element: <MyCart />,
       },
     ],
   },

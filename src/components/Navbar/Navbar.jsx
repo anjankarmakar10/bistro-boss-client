@@ -1,14 +1,14 @@
 import { ShoppingCart } from "react-feather";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthProvider";
-
 import useCarts from "../../hooks/useCarts";
 import NavItem from "./NavItem";
 import MobileNav from "./MobileNav";
 import ProfileBar from "./ProfileBar";
+import totalPrice from "../../utils/totalPrice";
 
 const Navbar = () => {
   const [carts] = useCarts();
+  const price = totalPrice(carts);
 
   return (
     <header className="bg-[#1515157f] text-white fixed w-full top-0 z-50">
@@ -64,7 +64,7 @@ const Navbar = () => {
                 <span className="font-bold text-lg">
                   {carts?.length || 0} Items
                 </span>
-                <span className="text-info">Subtotal: $999</span>
+                <span className="text-info">Total Price: ${price}</span>
                 <Link to={"/dashboard/mycart"} className="card-actions">
                   <button className="btn btn-primary btn-block">
                     View cart

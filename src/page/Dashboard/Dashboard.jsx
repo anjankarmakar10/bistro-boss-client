@@ -1,5 +1,5 @@
 import { NavLink, Link, Outlet } from "react-router-dom";
-import useTitle from "../../hooks/useTitle";
+
 import {
   AlignLeft,
   Book,
@@ -9,6 +9,7 @@ import {
   CreditCard,
   Home,
   Mail,
+  Menu,
   MessageSquare,
   PlusSquare,
   ShoppingBag,
@@ -17,27 +18,25 @@ import {
 } from "react-feather";
 
 const Dashboard = () => {
-  useTitle("Dashboard");
-
-  const admin = true;
+  const admin = false;
 
   return (
     <>
       <aside className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          <Outlet />
+        <div className="drawer-content">
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn btn-primary drawer-button m-4 lg:hidden"
           >
-            Open drawer
+            <Menu />
           </label>
+          <Outlet />
         </div>
         <div className="drawer-side ">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu flex flex-col  p-4 w-60 text-base-content bg-blue-400">
-            <Link to="/" className="flex flex-col font2 text-white ml-2 mb-4">
+          <ul className="menu flex flex-col  p-4 w-60 text-base-content bg-[#D1A054]">
+            <Link to="/" className="flex flex-col font2  ml-2 mb-4">
               <span className="sm:text-2xl text-lg font-black mb-[-1px]">
                 BISTRO BOSS
               </span>
