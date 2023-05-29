@@ -49,6 +49,16 @@ nav .active {
   color: #eeff25;
 }
 
+.mobile .active {
+  color: white;
+}
+.mobile a {
+  color: #151515;
+}
+.mobile a:hover {
+  color: rgb(41, 41, 41);
+}
+
 .bg-auth {
   background: url("./assets/others/authentication.png") no-repeat center / cover;
 }
