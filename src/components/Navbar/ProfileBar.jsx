@@ -61,7 +61,7 @@ const ProfileBar = () => {
           </a>
         </li>
         <li>
-          <Link to={"/dashboard"}>Dashboard</Link>
+          <Link to={"/dashboard/home"}>Dashboard</Link>
         </li>
         <li onClick={handleLogOut}>
           <a>Logout</a>

@@ -4,7 +4,7 @@ import NavItem from "./NavItem";
 const MobileNav = () => {
   return (
     <article className="dropdown text-black">
-      <label tabIndex={0} className="btn btn-ghost btn-circle">
+      <label tabIndex={0} className="btn btn-square btn-ghost md:hidden">
         <Menu size={30} color="white" />
       </label>
       <ul
