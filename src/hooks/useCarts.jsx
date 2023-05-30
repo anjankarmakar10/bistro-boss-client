@@ -14,7 +14,7 @@ const useCarts = () => {
     }
   };
 
-  const { data: carts, refetch } = useQuery({
+  const { data: carts = [], refetch } = useQuery({
     queryKey: ["carts", user?.uid],
     queryFn: getData,
   });

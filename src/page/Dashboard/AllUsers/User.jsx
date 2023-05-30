@@ -1,9 +1,12 @@
 import Swal from "sweetalert2";
 import useUsers from "../../../hooks/useUsers";
-import { Trash2, User as UserIcon } from "react-feather";
+import { Trash2, UserCheck, User as UserIcon } from "react-feather";
 
-const User = ({ user }) => {
+const User = ({ user, index }) => {
   const [, refetch] = useUsers();
+
+  const admin = user?.admin;
+  const id = user?._id;
 
   const handleDelete = () => {
     Swal.fire({
@@ -15,11 +18,10 @@ const User = ({ user }) => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      const deleteItem = async () => {
-        const response = await fetch(
-          `http://localhost:4000/users?id=${user?._id}`,
-          { method: "DELETE" }
-        );
+      const deleteUser = async () => {
+        const response = await fetch(`http://localhost:4000/users/${id}`, {
+          method: "DELETE",
+        });
         const result = await response.json();
         if (result.deletedCount > 0) {
           refetch();
@@ -27,14 +29,56 @@ const User = ({ user }) => {
         }
       };
       if (result.isConfirmed) {
-        deleteItem();
+        deleteUser();
+      }
+    });
+  };
+
+  const handleRole = (makeAdmin) => {
+    const user = {
+      admin: makeAdmin,
+    };
+
+    Swal.fire({
+      title: `Make ${makeAdmin ? "admin?" : "normal user?"}`,
+      text: "You will able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `Yes, make ${makeAdmin ? "admin!" : "normal!"}`,
+    }).then((result) => {
+      const updateUser = async () => {
+        const response = await fetch(
+          `http://localhost:4000/users/admin/${id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        );
+        const result = await response.json();
+        if (result.modifiedCount > 0) {
+          refetch();
+          Swal.fire(
+            "Sucess!",
+            `"User has been has been ${
+              makeAdmin ? "promoted to admin" : "demoted from admin"
+            } `
+          );
+        }
+      };
+      if (result.isConfirmed) {
+        updateUser();
       }
     });
   };
 
   return (
     <tr>
-      <th></th>
+      <th className="font-bold">{index}</th>
       <td>
         <div className="flex items-center space-x-3 ">{user?.name}</div>
       </td>
@@ -44,9 +88,22 @@ const User = ({ user }) => {
         </div>
       </td>
       <td className="">
-        <button className="btn border-none btn-square bg-[#D1A054]">
-          <UserIcon />
-        </button>
+        {admin ? (
+          <button
+            onClick={() => handleRole(false)}
+            title={`${admin && "Admin"}`}
+            className={`btn border-none btn-square pl-1 bg-[#00ce75]`}
+          >
+            <UserCheck />
+          </button>
+        ) : (
+          <button
+            onClick={() => handleRole(true)}
+            className={`btn border-none btn-square "bg-[#D1A054]"`}
+          >
+            <UserIcon />
+          </button>
+        )}
       </td>
       <th>
         <button

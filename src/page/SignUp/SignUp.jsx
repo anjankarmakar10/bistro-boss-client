@@ -33,6 +33,7 @@ const SignUp = () => {
       const newUser = {
         name: user?.displayName,
         email: user?.email,
+        admin: false,
       };
 
       const response = await addUser(newUser);

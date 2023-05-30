@@ -1,8 +1,9 @@
-import React from "react";
 import useUsers from "../../../hooks/useUsers";
 import User from "./User";
-
+import useTitle from "../../../hooks/useTitle";
 const AllUsers = () => {
+  useTitle("All Users");
+
   const [users] = useUsers();
 
   return (
@@ -33,8 +34,8 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {users?.map((user) => (
-                <User key={user?._id} user={user} />
+              {users?.map((user, index) => (
+                <User key={user?._id} index={index + 1} user={user} />
               ))}
             </tbody>
           </table>

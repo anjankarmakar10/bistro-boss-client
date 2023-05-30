@@ -15,6 +15,7 @@ const GoogleProvider = () => {
       const newUser = {
         name: user?.displayName,
         email: user?.email,
+        admin: false,
       };
       const res = await addUser(newUser);
       const result = await res.json();
