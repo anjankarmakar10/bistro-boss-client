@@ -5,10 +5,13 @@ import NavItem from "./NavItem";
 import MobileNav from "./MobileNav";
 import ProfileBar from "./ProfileBar";
 import totalPrice from "../../utils/totalPrice";
+import { useAuth } from "../../contexts/AuthProvider";
 
 const Navbar = () => {
   const [carts] = useCarts();
   const price = totalPrice(carts);
+  const { user } = useAuth();
+  console.log(user);
 
   return (
     <header className="bg-[#1515157f] text-white fixed w-full top-0 z-50">
@@ -73,7 +76,15 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <ProfileBar />
+          <div>
+            {user ? (
+              <ProfileBar />
+            ) : (
+              <Link to="/signin" className="btn">
+                Sign In
+              </Link>
+            )}
+          </div>
         </div>
       </nav>
     </header>

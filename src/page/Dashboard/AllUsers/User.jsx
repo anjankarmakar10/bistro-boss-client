@@ -1,8 +1,9 @@
 import Swal from "sweetalert2";
-import useCarts from "../../../hooks/useCarts";
+import useUsers from "../../../hooks/useUsers";
+import { Trash2, User as UserIcon } from "react-feather";
 
-const CartItem = ({ cart }) => {
-  const [, refetch] = useCarts();
+const User = ({ user }) => {
+  const [, refetch] = useUsers();
 
   const handleDelete = () => {
     Swal.fire({
@@ -16,16 +17,15 @@ const CartItem = ({ cart }) => {
     }).then((result) => {
       const deleteItem = async () => {
         const response = await fetch(
-          `http://localhost:4000/carts?id=${cart?._id}`,
+          `http://localhost:4000/users?id=${user?._id}`,
           { method: "DELETE" }
         );
         const result = await response.json();
         if (result.deletedCount > 0) {
           refetch();
-          Swal.fire("Deleted!", "Your menu has been deleted.", "success");
+          Swal.fire("Deleted!", "User has been deleted.", "success");
         }
       };
-
       if (result.isConfirmed) {
         deleteItem();
       }
@@ -36,30 +36,28 @@ const CartItem = ({ cart }) => {
     <tr>
       <th></th>
       <td>
-        <div className="flex items-center space-x-3">
-          <div className="avatar">
-            <div className="mask mask-squircle w-14 h-14">
-              <img src={cart?.image} alt={cart?.name} />
-            </div>
-          </div>
-        </div>
+        <div className="flex items-center space-x-3 ">{user?.name}</div>
       </td>
       <td>
         <div>
-          <div className="font-bold">{cart?.name}</div>
+          <div className="">{user?.email}</div>
         </div>
       </td>
-      <td className="">{cart?.price}</td>
+      <td className="">
+        <button className="btn border-none btn-square bg-[#D1A054]">
+          <UserIcon />
+        </button>
+      </td>
       <th>
         <button
           onClick={handleDelete}
-          className="btn text-white bg-red-500  btn-xs p-3 pt-[14px]  grid place-content-center"
+          className="btn btn-square border-none bg-red-500 "
         >
-          Delete
+          <Trash2 />
         </button>
       </th>
     </tr>
   );
 };
 
-export default CartItem;
+export default User;

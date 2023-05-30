@@ -14,11 +14,11 @@ import {
   PlusSquare,
   ShoppingBag,
   ShoppingCart,
-  User,
+  Users,
 } from "react-feather";
 
 const Dashboard = () => {
-  const admin = false;
+  const admin = true;
 
   return (
     <>
@@ -83,7 +83,7 @@ const Dashboard = () => {
                     <AsideLink
                       to={"/dashboard/manageusers"}
                       title={"All Users"}
-                      icon={<User />}
+                      icon={<Users />}
                     />
                   </li>
                 </div>

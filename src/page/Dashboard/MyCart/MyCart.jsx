@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useCarts from "../../../hooks/useCarts";
 import useTitle from "../../../hooks/useTitle";
 import totalPrice from "../../../utils/totalPrice";
@@ -9,18 +10,31 @@ const MyCart = () => {
   const [carts] = useCarts();
   const pirce = totalPrice(carts);
 
+  if (carts?.length === 0) {
+    return (
+      <div className="w-full max-w-5xl mx-auto px-4 py-8">
+        <div className="alert rounded-lg font-semibold alert-info shadow-sm mb-8 flex items-center justify-between">
+          <span>There are no items in this carts</span>
+          <Link to={"/shop/foods"} className="underline">
+            Want to add?
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full max-w-5xl mx-auto px-4 py-8">
       <header className="mb-8 max-w-md mx-auto text-center">
         <h5 className="text-[#D99904] italic text-xl border-b-4 border-[#E8E8E8] pb-4 mb-5">
           My Cart
         </h5>
-        <h3 className="text-4xl font-semibold border-b-4 border-[#E8E8E8] pb-6">
+        <h3 className="text-3xl font-semibold border-b-4 border-[#E8E8E8] pb-6">
           Wanna Add Mor?
         </h3>
       </header>
 
-      <div className="alert rounded-sm alert-info shadow-sm mb-8">
+      <div className="alert rounded-sm font-semibold alert-info shadow-sm mb-8">
         <span>Total Items: {carts?.length}</span>
       </div>
 

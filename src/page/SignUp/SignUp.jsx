@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
+import addUser from "../../utils/addUser";
 
 const SignUp = () => {
   const {
@@ -28,13 +29,25 @@ const SignUp = () => {
       const { user } = await signUpWithEmail(data?.email, data?.password);
       await updateUserProfile(user, data?.name, "");
       await verifyEmail(user);
-      reset();
-      Swal.fire(
-        "Successfully Account Created!",
-        "Please check your email to verify your account",
-        "success"
-      );
-      navigate("/", { replace: true });
+
+      const newUser = {
+        name: user?.displayName,
+        email: user?.email,
+      };
+
+      const response = await addUser(newUser);
+
+      const result = await response.json();
+
+      if (result.insertedId) {
+        reset();
+        Swal.fire(
+          "Successfully Account Created!",
+          "Please check your email to verify your account",
+          "success"
+        );
+        navigate("/", { replace: true });
+      }
     } catch (error) {
       setLoading(false);
 

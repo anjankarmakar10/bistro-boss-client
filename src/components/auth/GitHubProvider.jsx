@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import img from "../../assets/icon/github.svg";
 import { useAuth } from "../../contexts/AuthProvider";
+import addUser from "../../utils/addUser";
 
 const GitHubProvider = () => {
   const { signInWithGithub } = useAuth();
@@ -10,7 +11,16 @@ const GitHubProvider = () => {
 
   const handleLogin = async () => {
     try {
-      await signInWithGithub();
+      const { user } = await signInWithGithub();
+
+      const newUser = {
+        name: user?.displayName,
+        email: user?.email || `${user?.reloadUserInfo?.screenName}@github.com`,
+      };
+      const res = await addUser(newUser);
+      const result = await res.json();
+      console.log(result);
+
       navigation(from, { replace: true });
     } catch (error) {
       console.log(error.message);
