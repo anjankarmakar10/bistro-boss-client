@@ -10,17 +10,17 @@ const MyCart = () => {
   const [carts] = useCarts();
   const pirce = totalPrice(carts);
 
-  if (carts?.length === 0) {
+  if (carts.error) {
     return (
       <div className="w-full max-w-5xl mx-auto px-4 py-8">
         <div className="alert rounded-lg font-semibold alert-info shadow-sm mb-8 flex items-center justify-between">
-          <span>There are no items in this carts</span>
-          <Link to={"/shop/foods"} className="underline">
-            Want to add?
-          </Link>
+          <span>Unauthorized Access</span>
         </div>
       </div>
     );
+  }
+
+  if (carts?.length === 0) {
   }
 
   return (

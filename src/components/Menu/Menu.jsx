@@ -20,7 +20,7 @@ const Menu = ({ menu }) => {
           category: menu?.category,
           price: menu?.price,
           menuId: menu?._id,
-          userId: user.uid,
+          email: user?.email || `anjankarmakar10@github.com`,
         });
         const result = await response.json();
 

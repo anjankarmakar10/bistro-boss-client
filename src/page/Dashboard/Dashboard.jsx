@@ -16,9 +16,10 @@ import {
   ShoppingCart,
   Users,
 } from "react-feather";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
-  const admin = true;
+  const [admin] = useAdmin();
 
   return (
     <>

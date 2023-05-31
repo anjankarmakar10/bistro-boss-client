@@ -11,7 +11,6 @@ const Navbar = () => {
   const [carts] = useCarts();
   const price = totalPrice(carts);
   const { user } = useAuth();
-  console.log(user);
 
   return (
     <header className="bg-[#1515157f] text-white fixed w-full top-0 z-50">

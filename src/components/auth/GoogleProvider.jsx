@@ -14,7 +14,7 @@ const GoogleProvider = () => {
       const { user } = await signInWithGoogle();
       const newUser = {
         name: user?.displayName,
-        email: user?.email,
+        email: "anjankarmakar10@github.com",
         admin: false,
       };
       const res = await addUser(newUser);
