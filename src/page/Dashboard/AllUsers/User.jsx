@@ -1,7 +1,6 @@
 import Swal from "sweetalert2";
 import useUsers from "../../../hooks/useUsers";
-import { Trash2, UserCheck, User as UserIcon } from "react-feather";
-
+import { Trash2, User as UserIcon } from "react-feather";
 const User = ({ user, index }) => {
   const [, refetch] = useUsers();
 
@@ -92,9 +91,9 @@ const User = ({ user, index }) => {
           <button
             onClick={() => handleRole(false)}
             title={`${admin && "Admin"}`}
-            className={`btn border-none btn-square pl-1 bg-[#00ce75]`}
+            className={`font-semibold`}
           >
-            <UserCheck />
+            Admin
           </button>
         ) : (
           <button

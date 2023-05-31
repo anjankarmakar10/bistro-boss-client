@@ -15,6 +15,7 @@ import {
   githubAuthProvider,
   googleAuthProvider,
 } from "../config/firebase";
+import axios from "axios";
 
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
@@ -72,8 +73,22 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubcribe = onAuthStateChanged(auth, (user) => {
+    const unsubcribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
+      const userInfo = {
+        email: user?.email || `${user?.reloadUserInfo?.screenName}@github.com`,
+      };
+
+      if (user) {
+        const { data } = await axios.post(
+          "http://localhost:4000/jwt",
+          userInfo
+        );
+        localStorage.setItem("access_token", data);
+      } else {
+        localStorage.removeItem("access_token");
+      }
+
       setLoading(false);
     });
 
