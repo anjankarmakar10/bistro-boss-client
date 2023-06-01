@@ -21,6 +21,13 @@ const MyCart = () => {
   }
 
   if (carts?.length === 0) {
+    return (
+      <div className="w-full max-w-5xl mx-auto px-4 py-8">
+        <div className="alert rounded-lg font-semibold alert-info shadow-sm mb-8 flex items-center justify-between">
+          <span>There are not items on this cart</span>
+        </div>
+      </div>
+    );
   }
 
   return (

@@ -1,16 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
+import useAxios from "./useAxios";
 
 const useUsers = () => {
+  const axios = useAxios();
+
   const getData = async () => {
     try {
-      const token = localStorage.getItem("access_token");
-      const response = await fetch("http://localhost:4000/users", {
-        headers: {
-          authorization: `bearer ${token}`,
-        },
-      });
-
-      return await response.json();
+      const { data } = await axios.get("/users");
+      return data;
     } catch (error) {
       return error.message;
     }

@@ -1,22 +1,16 @@
 import { useAuth } from "../contexts/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
+import useAxios from "./useAxios";
 const useCarts = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  const axios = useAxios();
 
-  const email = user?.email || `anjankarmakar10@github.com`;
-  const token = localStorage.getItem("access_token");
+  const email = user?.email || `${user?.reloadUserInfo?.screenName}@github.com`;
 
   const getData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:4000/carts?email=${email}`,
-        {
-          headers: {
-            authorization: `bearer ${token}`,
-          },
-        }
-      );
-      return await response.json();
+      const { data } = await axios.get(`/carts?email=${email}`);
+      return data;
     } catch (error) {
       return error.message;
     }
@@ -25,6 +19,7 @@ const useCarts = () => {
   const { data: carts = [], refetch } = useQuery({
     queryKey: ["carts", email],
     queryFn: getData,
+    enabled: !loading,
   });
 
   return [carts, refetch];

@@ -76,7 +76,7 @@ const AuthProvider = ({ children }) => {
     const unsubcribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
       const userInfo = {
-        email: user?.email || `anjankarmakar10@github.com`,
+        email: user?.email || `${user?.reloadUserInfo?.screenName}@github.com`,
       };
 
       if (user) {

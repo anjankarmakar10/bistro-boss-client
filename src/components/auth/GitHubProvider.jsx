@@ -18,10 +18,7 @@ const GitHubProvider = () => {
         email: user?.email || `${user?.reloadUserInfo?.screenName}@github.com`,
         admin: false,
       };
-      const res = await addUser(newUser);
-      const result = await res.json();
-      console.log(result);
-
+      await addUser(newUser);
       navigation(from, { replace: true });
     } catch (error) {
       console.log(error.message);
