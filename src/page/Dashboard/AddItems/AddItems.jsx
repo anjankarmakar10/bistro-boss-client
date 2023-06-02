@@ -1,12 +1,30 @@
 import { useForm } from "react-hook-form";
+import addItem from "../../../utils/addItem";
+import uploadImage from "../../../utils/uploadImage";
+import Swal from "sweetalert2";
 
 const AddItems = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (item) => {
+    try {
+      const response = await uploadImage(item.image);
+      const { data } = await response.json();
+      const recipe = { ...item, image: data?.display_url };
+
+      const res = await addItem(recipe);
+      if (res?.data?.insertedId) {
+        reset();
+        Swal.fire("New Recipe Add Successfully", "", "success");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div className="w-full max-w-5xl mx-auto px-4 py-8">
@@ -49,13 +67,13 @@ const AddItems = () => {
               </label>
               <select
                 {...register("category", { required: true })}
-                className="select select-bordered w-full "
+                className="select select-bordered w-full"
               >
-                <option selected>SALAD</option>
-                <option>PIZZA</option>
-                <option>SOUP</option>
-                <option>DESSERT</option>
-                <option>DRINKS</option>
+                <option className="uppercase">salad</option>
+                <option className="uppercase">pizza</option>
+                <option className="uppercase">soup</option>
+                <option className="uppercase">dessert</option>
+                <option className="uppercase">drinks</option>
               </select>
             </div>
             <div className="form-control w-full">
@@ -83,11 +101,11 @@ const AddItems = () => {
               </span>
             </label>
             <textarea
-              {...register("details", { required: true })}
+              {...register("recipe", { required: true })}
               className="textarea textarea-bordered h-56"
               placeholder="Recipe Details"
             ></textarea>
-            {errors.details && (
+            {errors.recipe && (
               <span className="mt-1 font-medium text-red-600">
                 Details is required
               </span>

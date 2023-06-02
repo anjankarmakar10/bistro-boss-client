@@ -51,7 +51,7 @@ const ManageItems = () => {
                 {...register("category", { required: true })}
                 className="select select-bordered w-full "
               >
-                <option selected>SALAD</option>
+                <option>SALAD</option>
                 <option>PIZZA</option>
                 <option>SOUP</option>
                 <option>DESSERT</option>
@@ -83,11 +83,11 @@ const ManageItems = () => {
               </span>
             </label>
             <textarea
-              {...register("details", { required: true })}
+              {...register("recipe", { required: true })}
               className="textarea textarea-bordered h-56"
               placeholder="Recipe Details"
             ></textarea>
-            {errors.details && (
+            {errors.recipe && (
               <span className="mt-1 font-medium text-red-600">
                 Details is required
               </span>
