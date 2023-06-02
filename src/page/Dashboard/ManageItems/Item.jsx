@@ -1,8 +1,13 @@
 import { Edit, Trash2 } from "react-feather";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxios from "../../../hooks/useAxios";
+import useMenu from "../../../hooks/useMenu";
 
 const Item = ({ menu, index }) => {
+  const axios = useAxios();
+  const [, refetch] = useMenu();
+
   const handleDelete = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -13,21 +18,16 @@ const Item = ({ menu, index }) => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      //   const deleteItem = async () => {
-      //     const response = await fetch(
-      //       `http://localhost:4000/menu?id=${cart?._id}`,
-      //       { method: "DELETE" }
-      //     );
-      //     const result = await response.json();
-      //     if (result.deletedCount > 0) {
-      //       refetch();
-      //       Swal.fire("Deleted!", "Your menu has been deleted.", "success");
-      //     }
-      //   };
+      const deleteItem = async () => {
+        const { data } = await axios.delete(`/menu/${menu?._id}`);
+        if (data.deletedCount > 0) {
+          refetch();
+          Swal.fire("Deleted!", "Your menu has been deleted.", "success");
+        }
+      };
 
       if (result.isConfirmed) {
-        // deleteItem();
-        Swal.fire("Deleted!", "Your menu has been deleted.", "success");
+        deleteItem();
       }
     });
   };

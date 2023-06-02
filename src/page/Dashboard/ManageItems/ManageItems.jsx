@@ -2,7 +2,7 @@ import useMenu from "../../../hooks/useMenu";
 import Item from "./Item";
 
 const ManageItems = () => {
-  const [menus, refetch] = useMenu();
+  const [menus] = useMenu();
 
   if (menus.lengh === 0) {
     return (
