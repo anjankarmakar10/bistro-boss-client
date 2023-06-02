@@ -1,4 +1,13 @@
+import { useForm } from "react-hook-form";
+
 const AddItems = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="w-full max-w-5xl mx-auto px-4 py-8">
       <header className="mb-8 max-w-md mx-auto text-center">
@@ -8,7 +17,11 @@ const AddItems = () => {
       </header>
 
       <div className="overflow-x-auto w-full  bg-[#F3F3F3] p-4 py-8 rounded-md">
-        <form className="max-w-4xl w-full mx-auto" action="">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="max-w-4xl w-full mx-auto"
+          action=""
+        >
           <div className="form-control w-full mb-4">
             <label className="label">
               <span className="label-text font-semibold text-lg">
@@ -16,10 +29,16 @@ const AddItems = () => {
               </span>
             </label>
             <input
+              {...register("name", { required: true })}
               type="text"
               placeholder="Recipe name"
               className="input input-bordered w-full "
             />
+            {errors.name && (
+              <span className="mt-1 font-medium text-red-600">
+                Name is required
+              </span>
+            )}
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-4 mb-4">
             <div className="form-control w-full">
@@ -28,10 +47,11 @@ const AddItems = () => {
                   Category*
                 </span>
               </label>
-              <select className="select select-bordered w-full ">
-                <option disabled selected>
-                  SALAD
-                </option>
+              <select
+                {...register("category", { required: true })}
+                className="select select-bordered w-full "
+              >
+                <option selected>SALAD</option>
                 <option>PIZZA</option>
                 <option>SOUP</option>
                 <option>DESSERT</option>
@@ -43,10 +63,16 @@ const AddItems = () => {
                 <span className="label-text font-semibold text-lg">Price*</span>
               </label>
               <input
+                {...register("price", { required: true })}
                 type="number"
                 placeholder="Price"
                 className="input input-bordered w-full "
               />
+              {errors.price && (
+                <span className="mt-1 font-medium text-red-600">
+                  Price is required
+                </span>
+              )}
             </div>
           </div>
 
@@ -57,15 +83,27 @@ const AddItems = () => {
               </span>
             </label>
             <textarea
+              {...register("details", { required: true })}
               className="textarea textarea-bordered h-56"
               placeholder="Recipe Details"
             ></textarea>
+            {errors.details && (
+              <span className="mt-1 font-medium text-red-600">
+                Details is required
+              </span>
+            )}
           </div>
           <div className="mb-4">
             <input
+              {...register("image", { required: true })}
               type="file"
               className="file-input file-input-bordered  w-full max-w-xs bg-[#E8E8E8]"
             />
+            {errors.image && (
+              <span className="mx-2 font-medium text-red-600">
+                Image is required
+              </span>
+            )}
           </div>
           <button className="btn gap-2">
             Add Item
