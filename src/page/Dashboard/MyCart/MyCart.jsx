@@ -37,7 +37,7 @@ const MyCart = () => {
           My Cart
         </h5>
         <h3 className="text-3xl font-semibold border-b-4 border-[#E8E8E8] pb-6">
-          Wanna Add Mor?
+          Wanna Add More?
         </h3>
       </header>
 
