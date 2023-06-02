@@ -5,7 +5,7 @@ import Button from "../../../../components/Buttons/Button";
 import MenuContainer from "../../../../components/Menu/MenuContainer";
 
 const Menus = () => {
-  const menus = useMenu();
+  const [menus] = useMenu();
 
   return (
     <section className="mb-32">

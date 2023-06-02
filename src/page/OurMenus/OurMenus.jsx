@@ -10,7 +10,7 @@ import Soups from "./Sections/Spups";
 const OurMenus = () => {
   useTitle("Our Menus");
 
-  const menus = useMenu();
+  const [menus] = useMenu();
 
   return (
     <>

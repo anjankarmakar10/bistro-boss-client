@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { data } from "autoprefixer";
 
 const useMenu = () => {
-  const [menu, setMenu] = useState(null);
-
   const getData = async () => {
     const response = await fetch("http://localhost:4000/menu");
-    const result = await response.json();
-    setMenu(result);
+    return await response.json();
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const { data: menu = [], refetch } = useQuery({
+    queryKey: ["menu"],
+    queryFn: getData,
+  });
 
-  return menu;
+  return [menu, refetch];
 };
 
 export default useMenu;

@@ -14,6 +14,8 @@ import ManageItems from "../page/Dashboard/ManageItems/ManageItems";
 import AllUsers from "../page/Dashboard/AllUsers/AllUsers";
 import MyCart from "../page/Dashboard/MyCart/MyCart";
 import AdminRoute from "./AdminRoute";
+import UpdateItem from "../page/Dashboard/UpdateItem/UpdateItem";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +84,16 @@ const router = createBrowserRouter([
             <AllUsers />
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/updateitem/:id",
+        element: (
+          <AdminRoute>
+            <UpdateItem />
+          </AdminRoute>
+        ),
+        loader: async ({ params }) =>
+          await axios.get(`http://localhost:4000/menu/${params?.id}`),
       },
       {
         path: "/dashboard/mycart",

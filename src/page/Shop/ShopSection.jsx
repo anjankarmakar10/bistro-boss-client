@@ -11,7 +11,7 @@ const ShopSection = () => {
   const [cetagory, setCetagory] = useState(
     `${category === "foods" ? "salad" : category}`
   );
-  const menus = useMenu();
+  const [menus] = useMenu();
   const data = menus?.filter((item) => item.category === cetagory);
 
   return (
