@@ -9,8 +9,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import useAxios from "../../../hooks/useAxios";
 import { useAuth } from "../../../contexts/AuthProvider";
+import Swal from "sweetalert2";
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ price, carts }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
@@ -61,7 +62,9 @@ const CheckoutForm = ({ price }) => {
           card: card,
           billing_details: {
             email:
-              user.email !== null ? user.email : "anjankarmakar10@ghithub.com",
+              user.email !== null
+                ? user.email
+                : `${user?.reloadUserInfo?.screenName}@github.com`,
             name: user.displayName || "anonymous",
           },
         },
@@ -76,6 +79,27 @@ const CheckoutForm = ({ price }) => {
 
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
+      const payment = {
+        email: user?.email || `${user?.reloadUserInfo?.screenName}@github.com`,
+        TansactionId: paymentIntent.id,
+        price,
+        quantity: carts?.length,
+        cartItems: carts?.map((item) => item._id),
+        menuItems: carts?.map((item) => item.menuId),
+        status: "pending",
+      };
+
+      console.log(payment);
+
+      axios.post("/payments", payment).then((res) => {
+        if (res.data.result.insertedId) {
+          Swal.fire({
+            icon: "success",
+            title: "Purchase Successful",
+            text: "",
+          });
+        }
+      });
     }
   };
 
@@ -153,10 +177,10 @@ const CheckoutForm = ({ price }) => {
 
 const stripePromise = loadStripe(`${import.meta.env.VITE_STRIPE_PUBLISH_KEY}`);
 
-const Checkout = ({ price }) => {
+const Checkout = ({ price, carts }) => {
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm price={price} />
+      <CheckoutForm carts={carts} price={price} />
     </Elements>
   );
 };

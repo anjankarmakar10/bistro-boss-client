@@ -15,7 +15,7 @@ const Payment = () => {
       </header>
       <div className="flex items-center min-h-[72vh]">
         <section className="max-w-2xl w-full min-h-[320px] mx-auto p-4 rounded-md  bg-slate-800 flex items-center justify-center bg-gradient-to-tr from-[#401F3E] to-[#443F77]">
-          <Checkout price={total} />
+          <Checkout carts={carts} price={total} />
         </section>
       </div>
     </div>
