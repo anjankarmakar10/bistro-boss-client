@@ -8,7 +8,7 @@ const useAxios = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:4000",
+    baseURL: "https://bistro-boss-server-anjankarmakar.vercel.app",
   });
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 const addUser = (newUser) => {
-  return fetch("http://localhost:4000/users", {
+  return fetch("https://bistro-boss-server-anjankarmakar.vercel.app/users", {
     method: "POST",
     headers: {
       "content-type": "application/json",

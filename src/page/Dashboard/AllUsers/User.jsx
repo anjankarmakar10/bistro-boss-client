@@ -18,9 +18,12 @@ const User = ({ user, index }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       const deleteUser = async () => {
-        const response = await fetch(`http://localhost:4000/users/${id}`, {
-          method: "DELETE",
-        });
+        const response = await fetch(
+          `https://bistro-boss-server-anjankarmakar.vercel.app/users/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
         const result = await response.json();
         if (result.deletedCount > 0) {
           refetch();
@@ -49,7 +52,7 @@ const User = ({ user, index }) => {
     }).then((result) => {
       const updateUser = async () => {
         const response = await fetch(
-          `http://localhost:4000/users/admin/${id}`,
+          `https://bistro-boss-server-anjankarmakar.vercel.app/users/admin/${id}`,
           {
             method: "PATCH",
             headers: {

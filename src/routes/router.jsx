@@ -94,7 +94,9 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: async ({ params }) =>
-          await axios.get(`http://localhost:4000/menu/${params?.id}`),
+          await axios.get(
+            `https://bistro-boss-server-anjankarmakar.vercel.app/menu/${params?.id}`
+          ),
       },
       {
         path: "/dashboard/mycart",

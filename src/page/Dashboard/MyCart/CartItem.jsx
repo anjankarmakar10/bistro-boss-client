@@ -16,7 +16,7 @@ const CartItem = ({ cart }) => {
     }).then((result) => {
       const deleteItem = async () => {
         const response = await fetch(
-          `http://localhost:4000/carts?id=${cart?._id}`,
+          `https://bistro-boss-server-anjankarmakar.vercel.app/carts?id=${cart?._id}`,
           { method: "DELETE" }
         );
         const result = await response.json();

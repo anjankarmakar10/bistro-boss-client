@@ -1,5 +1,5 @@
 const addToCart = (item) => {
-  return fetch("http://localhost:4000/carts", {
+  return fetch("https://bistro-boss-server-anjankarmakar.vercel.app/carts", {
     method: "POST",
     headers: {
       "content-type": "application/json",

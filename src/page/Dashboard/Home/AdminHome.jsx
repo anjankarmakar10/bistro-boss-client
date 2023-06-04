@@ -13,20 +13,20 @@ const AdminHome = () => {
         Hello {user?.displayName}, Welcome back!
       </h2>
       <div>
-        <section className="flex gap-4 flex-wrap py-8 justify-center">
+        <section className="flex gap-4 flex-wrap my-8 justify-center stats shadow">
           <HomeCard
             title={"Users"}
-            icon={<Users size={36} />}
+            icon={<Users size={34} />}
             info={stats?.users}
           />
           <HomeCard
             title={"Products"}
-            icon={<ShoppingBag size={36} />}
+            icon={<ShoppingBag size={34} />}
             info={stats?.products}
           />
           <HomeCard
             title={"Orders"}
-            icon={<Truck size={36} />}
+            icon={<Truck size={34} />}
             info={stats?.orders}
           />
           <HomeCard title={"Revenue"} icon={""} info={`$${stats?.revenue}`} />

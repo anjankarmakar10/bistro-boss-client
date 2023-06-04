@@ -81,7 +81,7 @@ const AuthProvider = ({ children }) => {
 
       if (user) {
         const { data } = await axios.post(
-          "http://localhost:4000/jwt",
+          "https://bistro-boss-server-anjankarmakar.vercel.app/jwt",
           userInfo
         );
         localStorage.setItem("access_token", data);
