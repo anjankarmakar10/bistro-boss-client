@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { data } from "autoprefixer";
 
 const useMenu = () => {
   const getData = async () => {

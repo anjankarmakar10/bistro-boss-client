@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "./useAxios";
 
 const useAdmin = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const axios = useAxios();
 
   const email = user?.email || `${user?.reloadUserInfo?.screenName}@github.com`;
@@ -16,6 +16,7 @@ const useAdmin = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["admin", user?.email],
     queryFn: getData,
+    enabled: !loading,
   });
 
   return [data?.admin, isLoading];
