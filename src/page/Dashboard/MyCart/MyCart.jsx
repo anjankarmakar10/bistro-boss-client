@@ -69,7 +69,12 @@ const MyCart = () => {
               <th></th>
               <th>${pirce}</th>
               <th>
-                <button className="btn btn-sm  px-4">Pay</button>
+                <Link
+                  to="/dashboard/payment"
+                  className="btn btn-sm border-none bg-[#002C88] px-4"
+                >
+                  Pay Now
+                </Link>
               </th>
             </tr>
           </tfoot>

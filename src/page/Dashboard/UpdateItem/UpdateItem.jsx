@@ -94,6 +94,7 @@ const UpdateItem = () => {
               <input
                 {...register("price", { required: true })}
                 type="number"
+                step="any"
                 defaultValue={data?.price}
                 placeholder="Price"
                 className="input input-bordered w-full "

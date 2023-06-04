@@ -7,12 +7,16 @@ const useMenu = () => {
     return await response.json();
   };
 
-  const { data: menu = [], refetch } = useQuery({
+  const {
+    data: menu = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["menu"],
     queryFn: getData,
   });
 
-  return [menu, refetch];
+  return [menu, refetch, isLoading];
 };
 
 export default useMenu;

@@ -16,6 +16,7 @@ import MyCart from "../page/Dashboard/MyCart/MyCart";
 import AdminRoute from "./AdminRoute";
 import UpdateItem from "../page/Dashboard/UpdateItem/UpdateItem";
 import axios from "axios";
+import Payment from "../page/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/mycart",
         element: <MyCart />,
+      },
+      {
+        path: "/dashboard/payment",
+        element: <Payment />,
       },
     ],
   },

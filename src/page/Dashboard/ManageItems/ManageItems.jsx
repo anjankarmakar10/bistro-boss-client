@@ -2,7 +2,7 @@ import useMenu from "../../../hooks/useMenu";
 import Item from "./Item";
 
 const ManageItems = () => {
-  const [menus] = useMenu();
+  const [menus, refetch, isLoading] = useMenu();
 
   if (menus.lengh === 0) {
     return (
@@ -10,6 +10,14 @@ const ManageItems = () => {
         <div className="alert rounded-lg font-semibold alert-info shadow-sm mb-8 flex items-center justify-between">
           <span>There are not items to manage</span>
         </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="w-full max-w-5xl mx-auto px-4 py-8 flex justify-center ">
+        <span className="loading loading-dots loading-lg"></span>
       </div>
     );
   }
